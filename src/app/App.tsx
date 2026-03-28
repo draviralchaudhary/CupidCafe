@@ -498,27 +498,26 @@ return (
 
     {/*TEST BUTTON */}
     <button
-      onClick={async () => {
-        try {
-          const res = await fetch("https://cupidcafe.up.railway.app/health");
-          const data = await res.json();
-          console.log(data);
-          alert(JSON.stringify(data));
-        } catch (err) {
-          console.error(err);
-          alert("Backend not reachable ❌");
-        }
-      }}
-      style={{
-        position: "fixed",
-        top: "20px",
-        right: "20px",
-        zIndex: 9999,
-        padding: "10px 15px",
-        background: "red",
-        color: "white",
-        borderRadius: "8px"
-      }}
-    >
-      Test Backend
-    </button>
+  onClick={async () => {
+    try {
+      const res = await fetch(`${API}/health`);
+      const data = await res.json();
+      alert("✅ Connected: " + JSON.stringify(data));
+    } catch (err) {
+      alert("❌ Backend not reachable");
+      console.error(err);
+    }
+  }}
+  style={{
+    position: "fixed",
+    top: "20px",
+    right: "20px",
+    zIndex: 999999,
+    padding: "12px",
+    background: "green",
+    color: "white",
+    borderRadius: "8px"
+  }}
+>
+  Test API 🚀
+</button>

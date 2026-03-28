@@ -11,9 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 // 🔥 ROOT ROUTE (IMPORTANT FOR RAILWAY)
-app.get("/", (req, res) => {
-  res.send("Cupid Cafe Backend is Running 💘");
-});
+const cors = require("cors");
+app.use(cors());
 
 // 🔥 HEALTH ROUTE (FOR FRONTEND TEST)
 app.get("/health", (req, res) => {
