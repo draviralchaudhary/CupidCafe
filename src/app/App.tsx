@@ -4,7 +4,7 @@ import { Search, ShoppingBasket, Heart, Sparkles, MapPin, Clock, Star, Menu as M
 import cafeImage from "../assets/cafe.png";
 
 
-const API = "https://cupid-backend-production.up.railway.app";
+const API = "https://cupidcafe-production.up.railway.app/";
 
 interface MenuItem {
   id: number;
@@ -170,6 +170,14 @@ export default function App() {
               className="px-8 py-4 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
             >
               Explore Menu
+            </button>
+            <button onClick={async () => {
+                const res = await fetch(`${API}/health`);
+                const data = await res.json();
+                console.log(data);
+                alert(JSON.stringify(data));
+                  }}>
+                  Test Backend 🔥
             </button>
             <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-full font-semibold hover:bg-white/20 transition-all duration-300">
               Reserve Now
