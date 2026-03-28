@@ -171,14 +171,7 @@ export default function App() {
             >
               Explore Menu
             </button>
-            <button onClick={async () => {
-                const res = await fetch(`${API}/health`);
-                const data = await res.json();
-                console.log(data);
-                alert(JSON.stringify(data));
-                  }}>
-                  Test Backend 🔥
-            </button>
+            
             <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-full font-semibold hover:bg-white/20 transition-all duration-300">
               Reserve Now
             </button>
@@ -500,3 +493,32 @@ export default function App() {
     </div>
   );
 }
+return (
+  <div>
+
+    {/* 🔥 TEST BUTTON */}
+    <button
+      onClick={async () => {
+        try {
+          const res = await fetch("https://cupidcafe.up.railway.app/health");
+          const data = await res.json();
+          console.log(data);
+          alert(JSON.stringify(data));
+        } catch (err) {
+          console.error(err);
+          alert("Backend not reachable ❌");
+        }
+      }}
+      style={{
+        position: "fixed",
+        top: "20px",
+        right: "20px",
+        zIndex: 9999,
+        padding: "10px 15px",
+        background: "red",
+        color: "white",
+        borderRadius: "8px"
+      }}
+    >
+      Test Backend 🔥
+    </button>
