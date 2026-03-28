@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // CONNECT DATABASE
-mongoose.connect("mongodb://127.0.0.1:27017/cupidcafe");
+mongoose.connect(process.env.MONGODB_URI);
 
 // ORDER SCHEMA
 const Order = mongoose.model("Order", {
