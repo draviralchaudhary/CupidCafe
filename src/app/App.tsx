@@ -496,7 +496,7 @@ export default function App() {
 return (
   <div>
 
-    {/* 🔥 TEST BUTTON */}
+    {/*TEST BUTTON */}
     <button
       onClick={async () => {
         try {
@@ -520,5 +520,5 @@ return (
         borderRadius: "8px"
       }}
     >
-      Test Backend 🔥
+      Test Backend
     </button>
