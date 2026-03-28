@@ -493,31 +493,3 @@ export default function App() {
     </div>
   );
 }
-return (
-  <div>
-
-    {/*TEST BUTTON */}
-    <button
-  onClick={async () => {
-    try {
-      const res = await fetch(`${API}/health`);
-      const data = await res.json();
-      alert("✅ Connected: " + JSON.stringify(data));
-    } catch (err) {
-      alert("❌ Backend not reachable");
-      console.error(err);
-    }
-  }}
-  style={{
-    position: "fixed",
-    top: "20px",
-    right: "20px",
-    zIndex: 999999,
-    padding: "12px",
-    background: "green",
-    color: "white",
-    borderRadius: "8px"
-  }}
->
-  Test API 🚀
-</button>
