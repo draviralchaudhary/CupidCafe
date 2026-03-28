@@ -11,7 +11,15 @@ app.use(cors());
 app.use(express.json());
 
 // 🔥 ROOT ROUTE (IMPORTANT FOR RAILWAY)
+const path = require("path");
 
+// Serve frontend files
+app.use(express.static(path.join(__dirname, "public")));
+
+// Handle React routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 // 🔥 HEALTH ROUTE (FOR FRONTEND TEST)
 app.get("/health", (req, res) => {
