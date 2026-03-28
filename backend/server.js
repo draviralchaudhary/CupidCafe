@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 // 🔥 ROOT ROUTE (IMPORTANT FOR RAILWAY)
-const cors = require("cors");
 app.use(cors());
 
 // 🔥 HEALTH ROUTE (FOR FRONTEND TEST)
