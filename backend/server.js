@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
 
 // 🔥 ROOT ROUTE (IMPORTANT FOR RAILWAY)
 const path = require("path");
