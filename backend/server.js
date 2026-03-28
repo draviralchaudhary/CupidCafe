@@ -4,7 +4,7 @@ console.log("SERVER STARTING...");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
+import cors from "cors";
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -26,10 +26,11 @@ app.post("/order", async (req, res) => {
   res.send({ success: true });
 });
 
-// GET ORDERS (for kitchen)
-app.get("/", (req, res) => {
-  res.send("Cupid Cafe Backend is Running 💘");
-});
+
+
+app.use(cors({
+  origin: "*"
+}));
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB Connected ✅"))
