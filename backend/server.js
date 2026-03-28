@@ -1,5 +1,5 @@
 require("dotenv").config();
-console.log("ENV:", process.env.MONGODB_URI);
+console.log("MONGO URI:", process.env.MONGODB_URI);
 console.log("SERVER STARTING...");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -27,9 +27,8 @@ app.post("/order", async (req, res) => {
 });
 
 // GET ORDERS (for kitchen)
-app.get("/orders", async (req, res) => {
-  const orders = await Order.find().sort({ createdAt: -1 });
-  res.send(orders);
+app.get("/", (req, res) => {
+  res.send("Cupid Cafe Backend is Running 💘");
 });
 
 mongoose.connect(process.env.MONGODB_URI)

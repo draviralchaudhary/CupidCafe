@@ -4,7 +4,7 @@ import { Search, ShoppingBasket, Heart, Sparkles, MapPin, Clock, Star, Menu as M
 import cafeImage from "../assets/cafe.png";
 
 
-const API_BASE_URL = "https://cupid-backend-production.up.railway.app";
+const API = "https://cupid-backend-production.up.railway.app";
 
 interface MenuItem {
   id: number;
