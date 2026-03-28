@@ -1,43 +1,33 @@
-require("dotenv").config();
-console.log("MONGO URI:", process.env.MONGODB_URI);
-console.log("SERVER STARTING...");
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// CONNECT DATABASE
-
-// ORDER SCHEMA
-const Order = mongoose.model("Order", {
-  items: Array,
-  total: Number,
-  status: { type: String, default: "pending" },
-  createdAt: { type: Date, default: Date.now }
+// 🔥 ROOT ROUTE (IMPORTANT FOR RAILWAY)
+app.get("/", (req, res) => {
+  res.send("Cupid Cafe Backend is Running 💘");
 });
 
-// CREATE ORDER
-app.post("/order", async (req, res) => {
-  const order = new Order(req.body);
-  await order.save();
-  res.send({ success: true });
+// 🔥 HEALTH ROUTE (FOR FRONTEND TEST)
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
-
-
-app.use(cors({
-  origin: "*"
-}));
-
+// 🔥 CONNECT MONGO (SAFE WAY)
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB Connected ✅"))
-  .catch(err => console.log(err));
+  .catch(err => console.log("Mongo Error ❌", err));
 
+// 🔥 PORT (VERY IMPORTANT FOR RAILWAY)
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log("Server running on port", PORT);
 });
