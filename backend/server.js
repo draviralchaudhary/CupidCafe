@@ -4,7 +4,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 
 dotenv.config();
-
+console.log("ENV CHECK:", process.env.MONGODB_URI);
 const app = express();
 
 app.use(cors());
@@ -14,18 +14,17 @@ app.use(express.json());
 const path = require("path");
 
 // Serve frontend files
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../public")));
 
-// Handle React routes
-app.get( (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+app.get((req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // 🔥 HEALTH ROUTE (FOR FRONTEND TEST)
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
-
+console.log("ENV CHECK:", process.env.MONGODB_URI);
 // 🔥 CONNECT MONGO (SAFE WAY)
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB Connected ✅"))
