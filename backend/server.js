@@ -7,7 +7,10 @@ dotenv.config();
 console.log("ENV CHECK:", process.env.MONGODB_URI);
 const app = express();
 
-app.use(cors());
+
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 
 // 🔥 ROOT ROUTE (IMPORTANT FOR RAILWAY)
