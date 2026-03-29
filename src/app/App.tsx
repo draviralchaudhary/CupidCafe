@@ -4,7 +4,16 @@ import { Search, ShoppingBasket, Heart, Sparkles, MapPin, Clock, Star, Menu as M
 import cafeImage from "../assets/cafe.png";
 
 
-const API = "https://cupidcafe-production.up.railway.app/";
+const API = import.meta.env.VITE_API_URL;
+
+// Example POST request
+fetch(`${API}/api/orders`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(orderData)
+});
 
 interface MenuItem {
   id: number;
