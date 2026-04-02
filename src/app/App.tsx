@@ -6,14 +6,6 @@ import cafeImage from "../assets/cafe.png";
 
 const API = import.meta.env.VITE_API_URL;
 
-// Example POST request
-fetch(`${API}/api/orders`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(orderData)
-});
 
 interface MenuItem {
   id: number;
@@ -88,6 +80,34 @@ export default function App() {
   };
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const placeOrder = async () => {
+  try {
+    const orderData = {
+      items: cart,
+      total: totalPrice,
+    };
+
+    const res = await fetch(`${API}/api/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    await res.json();
+
+    alert("Order placed successfully!");
+
+    setCart([]);
+    setShowCart(false);
+
+  } catch (error) {
+    console.error(error);
+    alert("Error placing order");
+  }
+};
 
   return (
     <div style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif' }} className="min-h-screen bg-white text-gray-900">
@@ -489,8 +509,9 @@ export default function App() {
                   <span className="font-semibold text-gray-600">Total Amount</span>
                   <span className="font-bold text-gray-900" style={{ fontSize: '2rem' }}>₹{totalPrice}</span>
                 </div>
-                <button
-                  className="w-full py-4 bg-gray-900 text-white rounded-full font-semibold transition-all duration-300 hover:bg-gray-800 hover:shadow-xl hover:scale-105"
+               <button
+                  onClick={placeOrder}
+                  className="w-full py-4 bg-gray-900 text-white rounded-full font-semibold"
                 >
                   Proceed to Checkout
                 </button>
