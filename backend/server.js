@@ -17,7 +17,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
-
+app.post("/api/orders", (req, res) => {
+  console.log("Order received:", req.body);
+  res.json({ success: true });
+});
 // ✅ HEALTH CHECK
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
